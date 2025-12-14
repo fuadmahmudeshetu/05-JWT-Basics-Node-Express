@@ -11,9 +11,9 @@ const login = async (req, res) => {
     const id = new Date().getTime()
     
     
-    const token = jwt.sign({username})
+    const token = jwt.sign({id,username},process.env.JWT_SECRET,{expiresIn:'30d'})
 
-    res.send('Fake login/register/sign up')
+    res.status(200).json({ msg:'user created success', token})
 }
 
 const dashboard = async (req, res) => {
